@@ -6,14 +6,16 @@ const $todoList = document.querySelector('.todo-list');
 let todos = [];
 
 const render = () => {
-  $todoList.innerHTML = todos.map(
-    ({ id, content, checked }) => `
+  $todoList.innerHTML = todos
+    .map(
+      ({ id, content, checked }) => `
     <li data-id="${id}" class="todo-item">
       <input type="checkbox" ${checked ? 'checked' : ''} />
       <span>${content}</span>
     </li>
   `
-  );
+    )
+    .join('');
 };
 
 const setTodo = _todos => {
