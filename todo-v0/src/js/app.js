@@ -16,7 +16,8 @@ const render = () => {
       ({ id, content, checked }) => `
     <li data-id="${id}" class="todo-item">
       <input class="toggle" type="checkbox" ${checked ? 'checked' : ''} />
-      <span>${content}</span>
+      <span class="content">${content}</span>
+      <input class="content-edit hidden" type="text" />
       <button class="remove" type="button">x</button>
     </li>
   `
@@ -34,8 +35,8 @@ const setTodo = _todos => {
 
 const getNextId = () => Math.max(...todos.map(todo => todo.id), 0) + 1;
 
-const addTodo = todo => {
-  const _todos = [{ id: getNextId(), content: todo, checked: false }, ...todos];
+const addTodo = content => {
+  const _todos = [{ id: getNextId(), content, checked: false }, ...todos];
   setTodo(_todos);
 };
 
@@ -54,6 +55,11 @@ const removeTodo = id => {
   setTodo(_todos);
 };
 
+const editTodo = (id, content) => {
+  const _todos = todos.map(todo => (todo.id === +id ? { ...todo, content } : todo));
+  setTodo(_todos);
+};
+
 $toggleAll.onclick = ({ target: { checked } }) => {
   toggleAll(checked);
 };
@@ -64,6 +70,15 @@ $todoList.onclick = ({ target }) => {
   target.matches('.toggle') ? toggle(id) : removeTodo(id);
 };
 
+$todoList.ondblclick = ({ target }) => {
+  if (!target.matches('.content')) return;
+  target.classList.add('hidden');
+
+  const contentEdit = target.closest('.todo-item').querySelector('.content-edit');
+  contentEdit.value = target.textContent;
+  contentEdit.classList.remove('hidden');
+};
+
 $todoInput.onkeyup = e => {
   const { code } = e;
   const todo = e.target.value.trim();
@@ -71,6 +86,17 @@ $todoInput.onkeyup = e => {
 
   e.target.value = '';
   addTodo(todo);
+};
+
+$todoList.onkeyup = e => {
+  if (!e.target.matches('.content-edit')) return;
+  const { code } = e;
+  const todo = e.target.value.trim();
+
+  if (code !== 'Enter' || todo === '') return;
+
+  const { id } = e.target.closest('.todo-item').dataset;
+  editTodo(id, todo);
 };
 
 document.addEventListener('DOMContentLoaded', render);

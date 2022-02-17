@@ -1,0 +1,13 @@
+.hidden {
+  display: none;
+}
+
+.todo-item {
+  display: flex;
+  width: 250px;
+}
+
+.content,
+.content-edit {
+  flex-grow: 1;
+}
