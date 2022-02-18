@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo app</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./js/app.js"></script>
+  </head>
+  <body>
+    <input class="toggle-all" type="checkbox" />
+    <input class="todo-input" type="text" />
+    <ul class="todo-list">
+      <li data-id="1" class="todo-item">
+        <input class="toggle" type="checkbox" />
+        <span>html</span>
+        <button class="remove" type="button">x</button>
+      </li>
+    </ul>
+    <span class="count">3 item left</span>
+  </body>
+</html>
