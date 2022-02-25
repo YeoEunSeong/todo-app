@@ -1,3 +1,15 @@
+@import url(./reset.css);
+
+.title {
+  font-size: 32px;
+}
+
+.todos {
+  width: 50%;
+  height: 50%;
+  background-color: yellow;
+}
+
 .hidden {
   display: none;
 }

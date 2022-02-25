@@ -9,16 +9,19 @@
     <script defer src="./js/app.js"></script>
   </head>
   <body>
-    <input class="toggle-all" type="checkbox" />
-    <input class="todo-input" type="text" />
-    <ul class="todo-list">
-      <li data-id="1" class="todo-item">
-        <input class="toggle" type="checkbox" />
-        <span class="content">html</span>
-        <input class="content-edit" type="text" />
-        <button class="remove" type="button">x</button>
-      </li>
-    </ul>
-    <span class="count">3 item left</span>
+    <h1 class="title">Todo App</h1>
+    <div class="todos">
+      <input class="toggle-all" type="checkbox" />
+      <input class="todo-input" type="text" placeholder="Write todo..." />
+      <ul class="todo-list">
+        <li data-id="1" class="todo-item">
+          <input class="toggle" type="checkbox" />
+          <span class="content">html</span>
+          <input class="content-edit" type="text" />
+          <button class="remove" type="button">x</button>
+        </li>
+      </ul>
+      <span class="count">3 item left</span>
+    </div>
   </body>
 </html>
